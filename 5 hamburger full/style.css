@@ -1,0 +1,131 @@
+:root{
+    --primary:#394149;
+    --secondary:#117DE9;
+    --danger:#FF1D61;
+
+    --hm-width:3em;
+    --hm-height:.4em;
+    --spacing: calc(var(--hm-width) / 4);
+}
+
+*,*::after,*::before{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-size: 1rem;
+}
+#myHamburger{
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+    align-items: center;
+}
+main{
+    width: 100vw;
+    /* we are subtracting 5.125em from 100vw to remove the scrollbar. if we calculate the total height of header we get 82px. we divide 82px by 16px which is our body font size and get 5.125em  */
+    height: calc(100vh - 5.125em);
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+
+/* hamburger creation / styling  */
+.hamburger{
+    width: var(--hm-width);
+    height: var(--hm-height);
+    background-color: var(--primary);
+    position: relative;
+    z-index: 3;
+    transition: transform .5s ease-in-out ;  /*this will add smooth transition */
+
+}
+.hamburger::before , .hamburger::after{
+    /* by using ::before and after we can add any element without adding markup or div or span in html  */
+    content: "";    /*content should must use in before and after pseudo elements*/
+    display: block;
+    width: 50%;
+    height: inherit; /* this will use same height as original .hamburger which is .4em;*/
+    background-color: var(--primary);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform .5s ease-in-out ; /*this will add smooth transition */
+}
+.hamburger::after{
+    /* background-color: green; */
+    /* top: 1em; */
+    top: calc(-1* var(--spacing));
+}
+.hamburger::before{
+    /* background-color: blue; */
+    /* top: 1em; */
+    top: var(--spacing);
+    left: 50%;
+}
+/* defulat hamburger (three lines) has been created. */
+
+/* close class starts from here  */
+.close.hamburger::before , .close.hamburger::after{
+    left: 50%;      /*bring toward right */
+    transform: translate(-50%) rotate(90deg);  /* first translate and then rotate */
+    /*this code will make a plus sign */
+    background-color:white;
+}
+.close.hamburger{
+    transform: rotate(-45deg);
+    /*this will make it a cross sign*/
+    background-color: white;
+}
+
+
+
+
+/* navigation items  */
+
+/* this will use only when code to is not commented  */
+/* .myclass{
+    display: none;
+} */
+
+
+nav{
+    position: absolute;
+    background-color:var(--secondary);
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scaleY(0);   /*this will hide the nav element*/
+    transition: .3s transform ease-out;
+    transform-origin: top;
+}
+nav.reveal{
+    transform: scaleY(1);
+}
+.menu{
+    list-style: none;
+    text-align: center;
+}
+.menue_items{
+    font-size: calc(1.5rem + 1.5vw);
+    color: white;
+    text-decoration: none;
+    /* the lines below are for text showing  */
+    transform: translate(0em);
+    display: block; /* this is must add property else transform will not work */
+    opacity: 1;
+}
+.reveal_items{
+    transform: translate(0em);
+    opacity: 1;  
+}
+.menu li + li{  /*this will not select the first li */
+    margin-top: 1.5em;
+}

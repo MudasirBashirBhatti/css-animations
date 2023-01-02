@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 1px solid red;
+}
+
+ul{
+    display: flex;
+    background-color: black;
+}
+
+ul li{
+    list-style: none;
+    display: inline-block;
+}
+
+ul li a{
+    text-decoration: none;
+    display: block;
+    color: white;
+    padding: 15px;
+
+}
+
+
+.contact , .home , .about{
+    display: inline-block;
+}
+
+.contact-list , .home-list , .about-list{
+    display: none;
+    min-width: 130px;
+    position: absolute;
+}
+
+.contact-list a , .home-list a , .about-list a{
+    color: black;
+    background-color: rgb(158, 157, 157);
+}
+
+.contact-list a:hover ,.home-list a:hover ,.about-list a:hover{
+    background-color: rgb(255, 218, 183);
+}
+.contact:hover .contact-list ,.home:hover .home-list , .about:hover .about-list{
+    display: block;
+}
